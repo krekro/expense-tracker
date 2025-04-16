@@ -15,7 +15,7 @@ function ExpenseCard() {
 
 
   function fetchData() {
-    fetch("http://localhost:4000/get-expense").then((response) => {
+    fetch("http://localhost:4000/api/expenses", { method: "GET" }).then((response) => {
       response.json().then((body) => {
         console.log("json data: ", body)
         const cdata: ExpenseItem[] = sortDataByAmount(body.data).map((item: any) => ({

@@ -11,7 +11,7 @@ export default function TransactionList() {
 
     useEffect(() => {
         console.log("Fetching transaction data...")
-        fetch("http://localhost:4000/get-transaction")
+        fetch("http://localhost:4000/api/transactions", { method: "GET" })
             .then((response) => {
                 response.json().then((body) => {
                     console.log("Transaction data:", body)

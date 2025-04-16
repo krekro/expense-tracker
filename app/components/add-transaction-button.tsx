@@ -41,6 +41,8 @@ export default function AddTransactionButton() {
         }
     };
 
+    // z-index: 999 for the form to be above the blur
+    // z-index: 998 for the blur to be below the form
     return (
         <>
             {showform && (
