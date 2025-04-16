@@ -28,7 +28,6 @@
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "@netlify/vite-plugin-react-router": "^1.0.1",
     "@react-router/dev": "^7.5.0",
     "@tailwindcss/vite": "^4.0.0",
     "@types/node": "^20",
