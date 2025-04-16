@@ -46,7 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 shadow-md bg-accent">
+      <nav className="fixed z-50 top-0 left-0 right-0 shadow-md bg-accent">
         <div className="p-4 flex-center">
           <NavLink
             to="/"
