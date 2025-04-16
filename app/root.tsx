@@ -2,6 +2,7 @@ import {
   isRouteErrorResponse,
   Links,
   Meta,
+  NavLink,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -24,8 +25,9 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const theme = "light"; // Replace with your theme logic
   return (
-    <html lang="en">
+    <html className={theme} lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,7 +35,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <div>{children}</div>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -42,7 +44,38 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <nav className="fixed top-0 left-0 right-0 shadow-md bg-accent">
+        <div className="p-4 flex-center">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `px-4 py-2 rounded-md ${isActive
+                ? "bg-gray-900 text-white"
+                : "text-gray-300 hover:text-white hover:bg-gray-800"
+              }`
+            }
+          >
+            Home
+          </NavLink>
+          <span className="mx-2 text-gray-500">|</span>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              `px-4 py-2 rounded-md ${isActive
+                ? "bg-gray-900 text-white"
+                : "text-gray-300 hover:text-white hover:bg-gray-800"
+              }`
+            }
+          >
+            Dashboard
+          </NavLink>
+        </div>
+      </nav >
+      <main className="mt-16"><Outlet /></main>
+    </>
+  )
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
