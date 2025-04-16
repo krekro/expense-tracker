@@ -4,3 +4,8 @@ publish = "build/server"
 
 [dev]
 command = "react-router dev"
+
+[[redirects]]
+from = "/*"
+to = "/index.js"
+status = 200
