@@ -14,13 +14,15 @@ export default function TransactionList() {
         fetch("http://localhost:4000/api/transactions", { method: "GET" })
             .then((response) => {
                 response.json().then((body) => {
-                    console.log("Transaction data:", body)
                     const data: Transaction[] = body.data.map((item: any) => ({
+                        payment_id: item.payment_id,
+                        user_name: item.user_name,
                         description: item.description,
                         amount: item.amount,
                         category: item.category,
                         categoryColor: getColorByCategory(item.category),
                         date: new Date(item.date).toLocaleDateString("en-US", {
+                            year: "numeric",
                             month: "short",
                             day: "numeric",
                         })

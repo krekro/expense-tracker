@@ -20,6 +20,7 @@ export function getColorByCategory(category: string): string {
     Entertainment: "#4BC0C0",
     Utilities: "#9966FF",
     Healthcare: "#FF9F40",
+    Other: "#808080",
   }
   return colors[category] || "#000000" // Default color if category not found
 }
