@@ -6,6 +6,7 @@ import { } from "lucide-react"
 import { Autocomplete } from "@mui/material"
 import TextField from "@mui/material/TextField"
 import { v4 as uuidv4 } from "uuid"
+import { getAPIurl } from "~/types/keys"
 
 export function NewTransactionForm() {
     const [transactionDesc, setTransactionDesc] = useState("");
@@ -26,7 +27,7 @@ export function NewTransactionForm() {
         };
         console.log("Request Body:", requestBody);
         // Send request to backend
-        fetch("http://localhost:4000/api/create-transaction",
+        fetch(`${getAPIurl()}/api/create-transaction`,
             {
                 "method": "PUT",
                 "headers": {

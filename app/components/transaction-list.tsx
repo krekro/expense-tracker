@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/com
 import { useState, useEffect } from "react"
 import type { Transaction } from "~/types/expense"
 import { getColorByCategory } from "~/types/expense"
+import { getAPIurl } from "~/types/keys"
 
 
 export default function TransactionList() {
@@ -12,7 +13,7 @@ export default function TransactionList() {
     useEffect(() => {
         console.log("Fetching transaction data...");
         const user_name = "test_user" // Replace with actual user ID
-        fetch(`http://localhost:4000/api/transactions?user_name=${user_name}`, {
+        fetch(`${getAPIurl()}/api/transactions?user_name=${user_name}`, {
             "method": "GET"
         })
             .then((response) => {

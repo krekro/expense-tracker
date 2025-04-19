@@ -7,3 +7,10 @@ export function getAPIkey() {
     return apiKey;
 }
 
+export function getAPIurl() {
+    const apiUrl = "https://fin-api-seven.vercel.app";
+    if (!apiUrl) {
+        throw new Error("API URL is not defined");
+    }
+    return apiUrl;
+}

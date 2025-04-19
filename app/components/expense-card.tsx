@@ -5,6 +5,7 @@ import { ExpenseDonutChart } from "./expense-donut-chart"
 import { useState, useEffect } from "react"
 import type { ExpenseItem } from "~/types/expense"
 import { getColorByCategory } from "~/types/expense"
+import { getAPIurl } from "~/types/keys"
 
 function ExpenseCard() {
 
@@ -16,7 +17,7 @@ function ExpenseCard() {
 
   function fetchData() {
     const user_name = "test_user"
-    fetch(`http://localhost:4000/api/expenses/?user_name=${user_name}`,
+    fetch(`${getAPIurl()}/api/expenses/?user_name=${user_name}`,
       {
         "method": "GET"
       }).then((response) => {
