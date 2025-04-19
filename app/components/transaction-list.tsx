@@ -10,8 +10,11 @@ export default function TransactionList() {
     const [transactions, setTransactions] = useState<Transaction[]>([])
 
     useEffect(() => {
-        console.log("Fetching transaction data...")
-        fetch("http://localhost:4000/api/transactions", { method: "GET" })
+        console.log("Fetching transaction data...");
+        const user_name = "test_user" // Replace with actual user ID
+        fetch(`http://localhost:4000/api/transactions?user_name=${user_name}`, {
+            "method": "GET"
+        })
             .then((response) => {
                 response.json().then((body) => {
                     const data: Transaction[] = body.data.map((item: any) => ({

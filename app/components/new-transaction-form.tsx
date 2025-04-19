@@ -18,11 +18,11 @@ export function NewTransactionForm() {
         window.location.reload();
         const requestBody = {
             payment_id: uuidv4(),
-            user_id: "test_user", // Replace with actual user ID
+            user_name: "test_user", // Replace with actual user ID
             transaction_desc: transactionDesc,
             amount: parseFloat(amount),
             category: category,
-            create_date: new Date().toISOString().split("T")[0], // Format date as YYYY-MM-DD
+            create_date: new Date().toISOString(), // Format date as YYYY-MM-DD
         };
         console.log("Request Body:", requestBody);
         // Send request to backend

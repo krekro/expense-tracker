@@ -15,20 +15,24 @@ function ExpenseCard() {
 
 
   function fetchData() {
-    fetch("http://localhost:4000/api/expenses", { method: "GET" }).then((response) => {
-      response.json().then((body) => {
-        const cdata: ExpenseItem[] = sortDataByAmount(body.data).map((item: any) => ({
-          category: item.category,
-          amount: item.amount,
-          color: getColorByCategory(item.category)
-        }))
-        setData(cdata)
-        console.log("Expense data:", cdata)
-        const total = cdata.reduce((acc: number, item: ExpenseItem) => acc + item.amount, 0)
-        setTotalExpense(total)
-        console.log("Total expense:", total)
+    const user_name = "test_user"
+    fetch(`http://localhost:4000/api/expenses/?user_name=${user_name}`,
+      {
+        "method": "GET"
+      }).then((response) => {
+        response.json().then((body) => {
+          const cdata: ExpenseItem[] = sortDataByAmount(body.data).map((item: any) => ({
+            category: item.category,
+            amount: item.amount,
+            color: getColorByCategory(item.category)
+          }))
+          setData(cdata)
+          console.log("Expense data:", cdata)
+          const total = cdata.reduce((acc: number, item: ExpenseItem) => acc + item.amount, 0)
+          setTotalExpense(total)
+          console.log("Total expense:", total)
+        })
       })
-    })
   }
 
   function sortDataByAmount(data: ExpenseItem[]) {
