@@ -1,3 +1,4 @@
+//expose the API key and URL as functions
 
 export function getAPIkey() {
     const apiKey = process.env.API_KEY;

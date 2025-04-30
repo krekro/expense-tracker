@@ -1,24 +1,37 @@
-"use client"
+"use client";
 
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts"
-import type { ExpenseItem } from "~/types/expense"
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import type { ExpenseItem } from "~/services/expense";
 
 interface ExpenseDonutChartProps {
-  data: ExpenseItem[]
+  data: ExpenseItem[];
 }
 
 export function ExpenseDonutChart({ data }: ExpenseDonutChartProps) {
   // Add a check to ensure data is available
   console.log("ExpenseDonutChart data:", data);
   if (!data || data.length === 0) {
-    return <div className="h-[300px] w-full flex items-center justify-center">No expense data available</div>
+    return (
+      <div className="h-[300px] w-full flex items-center justify-center">
+        No expense data available
+      </div>
+    );
   }
 
   return (
     <div className="h-[300px] w-full">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
-          <Pie data={data} cornerRadius={4} cx="50%" cy="50%" innerRadius={80} outerRadius={100} paddingAngle={8} dataKey="amount">
+          <Pie
+            data={data}
+            cornerRadius={4}
+            cx="50%"
+            cy="50%"
+            innerRadius={80}
+            outerRadius={100}
+            paddingAngle={8}
+            dataKey="amount"
+          >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.color} />
             ))}
@@ -27,5 +40,5 @@ export function ExpenseDonutChart({ data }: ExpenseDonutChartProps) {
         </PieChart>
       </ResponsiveContainer>
     </div>
-  )
+  );
 }
