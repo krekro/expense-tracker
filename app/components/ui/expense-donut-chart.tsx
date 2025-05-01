@@ -9,7 +9,7 @@ interface ExpenseDonutChartProps {
 
 export function ExpenseDonutChart({ data }: ExpenseDonutChartProps) {
   // Add a check to ensure data is available
-  console.log("ExpenseDonutChart data:", data);
+  //console.log("ExpenseDonutChart data:", data);
   if (!data || data.length === 0) {
     return (
       <div className="h-[300px] w-full flex items-center justify-center">

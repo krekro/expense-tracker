@@ -7,6 +7,7 @@ import { Autocomplete } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { v4 as uuidv4 } from "uuid";
 import { getAPIurl } from "~/services/keys";
+import { getCookie } from "~/services/user";
 
 export function NewTransactionForm() {
   const [transactionDesc, setTransactionDesc] = useState("");
@@ -19,16 +20,16 @@ export function NewTransactionForm() {
     window.location.reload();
     const requestBody = {
       payment_id: uuidv4(),
-      user_name: "test_user", // Replace with actual user ID
+      user_name: getCookie("username"),
       transaction_desc: transactionDesc,
       amount: parseFloat(amount),
       category: category,
-      create_date: new Date().toISOString(), // Format date as YYYY-MM-DD
+      create_date: new Date().toISOString(),
     };
     console.log("Request Body:", requestBody);
     // Send request to backend
     fetch(`${getAPIurl()}/api/create-transaction`, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },

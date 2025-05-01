@@ -13,15 +13,18 @@ import type { ExpenseItem } from "~/services/expense";
 import { getColorByCategory } from "~/services/expense";
 import { getAPIurl } from "~/services/keys";
 
-function ExpenseCard() {
+interface ExpenseProp {
+  username: string;
+}
+
+function ExpenseCard({ username }: ExpenseProp) {
   // Use state to handle the data
   const [data, setData] = useState<ExpenseItem[]>([]);
   const [totalExpense, setTotalExpense] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   function fetchData() {
-    const user_name = "test_user";
-    fetch(`${getAPIurl()}/api/expenses/?user_name=${user_name}`, {
+    fetch(`${getAPIurl()}/api/expenses/?user_name=${username}`, {
       method: "GET",
     }).then((response) => {
       response.json().then((body) => {

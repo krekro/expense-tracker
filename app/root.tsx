@@ -53,7 +53,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               </NavLink>
               <span className="mx-2 text-gray-500">|</span>
               <NavLink
-                to="/dashboard"
+                to="/login"
                 className={({ isActive }) =>
                   `px-4 py-2 rounded-md ${
                     isActive
@@ -62,7 +62,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   }`
                 }
               >
-                Dashboard
+                Login
               </NavLink>
               <span className="mx-2 text-gray-500">|</span>
               <button

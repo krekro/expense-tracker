@@ -12,13 +12,17 @@ import type { Transaction } from "~/services/expense";
 import { getColorByCategory } from "~/services/expense";
 import { getAPIurl } from "~/services/keys";
 
-export default function TransactionList() {
+interface TransactionProp {
+  username: string;
+}
+
+export default function TransactionList({ username }: TransactionProp) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
     console.log("Fetching transaction data...");
     const user_name = "test_user"; // Replace with actual user ID
-    fetch(`${getAPIurl()}/api/transactions?user_name=${user_name}`, {
+    fetch(`${getAPIurl()}/api/transactions?user_name=${username}`, {
       method: "GET",
     })
       .then((response) => {
