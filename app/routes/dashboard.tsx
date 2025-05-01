@@ -10,10 +10,10 @@ export default function Dashboard() {
         <h1 className="text-3xl font-bold mb-6">Expense Tracker</h1>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           <div className="lg:col-span-2">
-            <ExpenseCard username={getCookie("username")} />
+            <ExpenseCard />
           </div>
           <div className="lg:col-span-3">
-            <TransactionList username={getCookie("username")} />
+            <TransactionList />
           </div>
         </div>
       </main>

@@ -9,13 +9,15 @@ export function setCookie(username: string, isLogin: string){
 }
 
 export function getCookie(key: string){
-    let cookieMap = new Map;
+    let cookieMap = new Map();
+    let result: string;
     const cookie = document.cookie;
     cookie.split(";").map((item)=>{
         cookieMap.set(item.split("=")[0], item.split("=")[1])
     })
     console.log(cookieMap)
-    return cookieMap.get(key);
+    result = cookieMap.get(key);
+    return result;
 }
 
 export function checkCookie(){

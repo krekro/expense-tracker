@@ -16,18 +16,15 @@ export function NewTransactionForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    //refresh the page
-    window.location.reload();
     const requestBody = {
       payment_id: uuidv4(),
-      user_name: getCookie("username"),
+      user_name: getCookie(" username"),
       transaction_desc: transactionDesc,
       amount: parseFloat(amount),
       category: category,
       create_date: new Date().toISOString(),
     };
     console.log("Request Body:", requestBody);
-    // Send request to backend
     fetch(`${getAPIurl()}/api/create-transaction`, {
       method: "POST",
       headers: {
@@ -37,12 +34,13 @@ export function NewTransactionForm() {
     }).then((response) => {
       if (response.ok) {
         console.log("Transaction added successfully");
-        // Optionally, reset the form fields
         setTransactionDesc("");
         setAmount("");
         setCategory("");
+        window.location.reload;
       } else {
         console.error("Error adding transaction:", response.statusText);
+        alert("Cannot submit null value, please resubmit.");
       }
     });
   };
@@ -51,7 +49,7 @@ export function NewTransactionForm() {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="mt-6 justify-center lg:grid-cols-4 gap-6 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-10 rounded-lg shadow-lg z-50 relative"
+        className="mt-6 justify-center lg:grid-cols-4 gap-6 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-10 rounded-lg shadow-lg z-50 relative resize-x"
       >
         <button
           type="button"

@@ -11,19 +11,19 @@ import { useState, useEffect } from "react";
 import type { Transaction } from "~/services/expense";
 import { getColorByCategory } from "~/services/expense";
 import { getAPIurl } from "~/services/keys";
+import { getCookie } from "~/services/user";
 
-interface TransactionProp {
-  username: string;
-}
-
-export default function TransactionList({ username }: TransactionProp) {
+export default function TransactionList() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
     console.log("Fetching transaction data...");
-    fetch(`${getAPIurl()}/api/transactions?user_name=${username}`, {
-      method: "GET",
-    })
+    fetch(
+      `${getAPIurl()}/api/transactions?user_name=${getCookie(" username")}`,
+      {
+        method: "GET",
+      }
+    )
       .then((response) => {
         response.json().then((body) => {
           const data: Transaction[] = body.data.map((item: any) => ({
