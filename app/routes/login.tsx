@@ -41,6 +41,9 @@ export default function Login() {
             console.log(getCookie("username"));
             window.location.href = "/dashboard";
           });
+        } else {
+          console.error("Error during login:");
+          alert("Please enter correct username or password");
         }
       })
       .catch((error) => {
