@@ -21,7 +21,6 @@ export default function TransactionList({ username }: TransactionProp) {
 
   useEffect(() => {
     console.log("Fetching transaction data...");
-    const user_name = "test_user"; // Replace with actual user ID
     fetch(`${getAPIurl()}/api/transactions?user_name=${username}`, {
       method: "GET",
     })
