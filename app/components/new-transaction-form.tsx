@@ -26,7 +26,7 @@ export function NewTransactionForm() {
       create_date: new Date().toISOString(),
     };
     console.log("Request Body:", requestBody);
-    fetch(`${getAPIurl(1)}/api/create-transaction`, {
+    fetch(`${getAPIurl()}/api/create-transaction`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

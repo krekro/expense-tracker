@@ -19,7 +19,7 @@ export default function TransactionList() {
   useEffect(() => {
     console.log("Fetching transaction data...");
     fetch(
-      `${getAPIurl(1)}/api/transactions?user_name=${getCookie(
+      `${getAPIurl()}/api/transactions?user_name=${getCookie(
         "username"
       )}&session_id=${getCookie("session_id")}`,
       {

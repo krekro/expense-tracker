@@ -23,7 +23,7 @@ function ExpenseCard() {
   function fetchData() {
     //console.log(`debug expensecard = ${getCookie(" session_id")}`);
     fetch(
-      `${getAPIurl(1)}/api/expenses/?user_name=${getCookie(
+      `${getAPIurl()}/api/expenses/?user_name=${getCookie(
         "username"
       )}&session_id=${getCookie("session_id")}`,
       {
