@@ -9,10 +9,6 @@ export function setCookie(username: string, isLogin: string, session_id: string)
     document.cookie = `session_id=${session_id}`
 }
 
-export function setTheme(theme: string){
-    document.cookie = `theme=${theme}`
-}
-
 export function getCookie(key: string){
     let cookieMap = new Map();
     let result: string;
@@ -26,6 +22,6 @@ export function getCookie(key: string){
     return result;
 }
 
-export function checkCookie(){
-
+export function setCookieTheme(theme: string){
+    document.cookie = `theme=${theme}`
 }

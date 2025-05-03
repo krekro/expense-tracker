@@ -8,11 +8,14 @@ export function getAPIkey() {
     return apiKey;
 }
 
-export function getAPIurl(dev?: number) {
-    if(typeof dev !== 'undefined' && dev == 1){
+export function getAPIurl(env: string) {
+    if(env == "dev"){
         const apiURL = "http://localhost:4000"
         return apiURL;
     }
-    const apiUrl = "https://fin-api-seven.vercel.app";
-    return apiUrl;
+    else if(env == "prod"){
+        const apiUrl = "https://fin-api-seven.vercel.app";
+        return apiUrl;
+    }
+
 }

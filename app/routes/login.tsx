@@ -27,7 +27,7 @@ export default function Login() {
     };
 
     console.log("Logging in with credentials:", userCredentials);
-    fetch(`${getAPIurl(1)}/user/login`, {
+    fetch(`${getAPIurl("prod")}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
