@@ -1,7 +1,6 @@
 import ExpenseCard from "~/components/expense-card";
 import TransactionList from "~/components/transaction-list";
 import AddTransactionButton from "~/components/add-transaction-button";
-import { getCookie } from "~/services/user";
 
 export default function Dashboard() {
   return (

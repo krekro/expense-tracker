@@ -8,10 +8,11 @@ export function getAPIkey() {
     return apiKey;
 }
 
-export function getAPIurl() {
-    const apiUrl = "https://fin-api-seven.vercel.app";
-    if (!apiUrl) {
-        throw new Error("API URL is not defined");
+export function getAPIurl(dev?: number) {
+    if(typeof dev !== 'undefined' && dev == 1){
+        const apiURL = "http://localhost:4000"
+        return apiURL;
     }
+    const apiUrl = "https://fin-api-seven.vercel.app";
     return apiUrl;
 }

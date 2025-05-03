@@ -27,7 +27,7 @@ export default function Login() {
     };
 
     console.log("Logging in with credentials:", userCredentials);
-    fetch(`${getAPIurl()}/user/login`, {
+    fetch(`${getAPIurl(1)}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,8 +37,9 @@ export default function Login() {
       .then((response) => {
         if (response.ok) {
           response.json().then((body) => {
-            setCookie(body.username, "true");
-            console.log(getCookie("username"));
+            setCookie(body.username, "true", body.session_id);
+            console.log(`Username = ${getCookie("username")}`);
+            setLogin(true);
             window.location.href = "/dashboard";
           });
         } else {

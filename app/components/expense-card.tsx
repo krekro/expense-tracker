@@ -21,11 +21,15 @@ function ExpenseCard() {
   const [isLoading, setIsLoading] = useState(false);
 
   function fetchData() {
-    console.log(`Cookie: ${document.cookie}`);
-    console.log(`getCookie: ${getCookie(" username")}`);
-    fetch(`${getAPIurl()}/api/expenses/?user_name=${getCookie(" username")}`, {
-      method: "GET",
-    }).then((response) => {
+    //console.log(`debug expensecard = ${getCookie(" session_id")}`);
+    fetch(
+      `${getAPIurl(1)}/api/expenses/?user_name=${getCookie(
+        "username"
+      )}&session_id=${getCookie("session_id")}`,
+      {
+        method: "GET",
+      }
+    ).then((response) => {
       response.json().then((body) => {
         const cdata: ExpenseItem[] = sortDataByAmount(body.data).map(
           (item: any) => ({
@@ -58,6 +62,7 @@ function ExpenseCard() {
       fetchData();
     } catch (error) {
       console.error("Error fetching data:", error);
+      alert("Invalid user session, please login again and retry");
     } finally {
       setIsLoading(false);
     }

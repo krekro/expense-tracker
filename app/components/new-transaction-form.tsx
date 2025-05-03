@@ -17,15 +17,16 @@ export function NewTransactionForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const requestBody = {
+      session_id: getCookie("session_id"),
       payment_id: uuidv4(),
-      user_name: getCookie(" username"),
+      user_name: getCookie("username"),
       transaction_desc: transactionDesc,
       amount: parseFloat(amount),
       category: category,
       create_date: new Date().toISOString(),
     };
     console.log("Request Body:", requestBody);
-    fetch(`${getAPIurl()}/api/create-transaction`, {
+    fetch(`${getAPIurl(1)}/api/create-transaction`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +38,7 @@ export function NewTransactionForm() {
         setTransactionDesc("");
         setAmount("");
         setCategory("");
-        window.location.reload;
+        window.location.reload();
       } else {
         console.error("Error adding transaction:", response.statusText);
         alert("Cannot submit null value, please resubmit.");
@@ -54,7 +55,7 @@ export function NewTransactionForm() {
         <button
           type="button"
           onClick={() => window.location.reload()} // Replace with a proper close handler if needed
-          className="absolute top-4 right-5 text-gray-500 hover:text-red-700 dark:text-gray-400 dark:hover:text-gray-200"
+          className="absolute top-4 right-5 text-gray-500 hover:text-red-700 dark:text-gray-400 dark:hover:text-gray-200 hover: cursor-pointer"
         >
           ✕
         </button>
@@ -106,7 +107,7 @@ export function NewTransactionForm() {
           />
         </div>
 
-        <Button className="mt-8" type="submit">
+        <Button className="mt-8 hover: cursor-pointer" type="submit">
           Add Transaction
         </Button>
       </form>
