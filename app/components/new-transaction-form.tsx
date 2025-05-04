@@ -103,7 +103,7 @@ export function NewTransactionForm() {
             renderInput={(params) => (
               <TextField {...params} label="Category" variant="standard" />
             )}
-            className="w-full"
+            className="w-full text-gray-900"
           />
         </div>
 

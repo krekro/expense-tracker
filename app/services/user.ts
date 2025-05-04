@@ -25,3 +25,8 @@ export function getCookie(key: string){
 export function setCookieTheme(theme: string){
     document.cookie = `theme=${theme}`
 }
+
+export function handleLogout() {
+    setCookie("", "false", "");
+    window.location.href = "/login";
+  }

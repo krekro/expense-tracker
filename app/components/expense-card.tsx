@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 import type { ExpenseItem } from "~/services/expense";
 import { getColorByCategory } from "~/services/expense";
 import { getAPIurl } from "~/services/keys";
-import { getCookie } from "~/services/user";
+import { getCookie, handleLogout } from "~/services/user";
 
 function ExpenseCard() {
   // Use state to handle the data
@@ -30,23 +30,32 @@ function ExpenseCard() {
         method: "GET",
       }
     ).then((response) => {
-      response.json().then((body) => {
-        const cdata: ExpenseItem[] = sortDataByAmount(body.data).map(
-          (item: any) => ({
-            category: item.category,
-            amount: item.amount,
-            color: getColorByCategory(item.category),
-          })
-        );
-        setData(cdata);
-        console.log("Expense data:", cdata);
-        const total = cdata.reduce(
-          (acc: number, item: ExpenseItem) => acc + item.amount,
-          0
-        );
-        setTotalExpense(total);
-        console.log("Total expense:", total);
-      });
+      if (response.ok) {
+        response.json().then((body) => {
+          const cdata: ExpenseItem[] = sortDataByAmount(body.data).map(
+            (item: any) => ({
+              category: item.category,
+              amount: item.amount,
+              color: getColorByCategory(item.category),
+            })
+          );
+          setData(cdata);
+          console.log("Expense data:", cdata);
+          const total = cdata.reduce(
+            (acc: number, item: ExpenseItem) => acc + item.amount,
+            0
+          );
+          setTotalExpense(total);
+          console.log("Total expense:", total);
+        });
+      } else {
+        response.json().then((body) => {
+          if (body.message == "Invalid Session") {
+            handleLogout();
+            alert("Invalid Session, please login again");
+          }
+        });
+      }
     });
   }
 
