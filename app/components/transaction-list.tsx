@@ -25,7 +25,7 @@ export default function TransactionList() {
       `user_name=${getCookie("username")}` +
       `&session_id=${getCookie("session_id")}` +
       `&payment_id=${payment_id}`;
-    fetch(`${getAPIurl("dev")}/api/delete-transaction?${qeuryParams}`, {
+    fetch(`${getAPIurl("prod")}/api/delete-transaction?${qeuryParams}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
