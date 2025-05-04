@@ -69,7 +69,7 @@ function ExpenseCard() {
   }, []);
 
   return (
-    <Card className="w-full">
+    <Card className="w-full bg-white dark:bg-gray-900 hover:bg-muted/20 shadow-md">
       <CardHeader>
         <CardTitle>Monthly Expenses</CardTitle>
         <CardDescription>

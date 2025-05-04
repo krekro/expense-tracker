@@ -12,6 +12,7 @@ import type { Transaction } from "~/services/expense";
 import { getColorByCategory } from "~/services/expense";
 import { getAPIurl } from "~/services/keys";
 import { getCookie } from "~/services/user";
+import { Trash2, SquarePen, LoaderCircle } from "lucide-react";
 
 export default function TransactionList() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -54,7 +55,7 @@ export default function TransactionList() {
   }, []);
 
   return (
-    <Card className="w-full h-full">
+    <Card className="w-full h-full bg-white dark:bg-gray-900 hover:bg-muted/20 shadow-md">
       <CardHeader>
         <CardTitle>Recent Transactions</CardTitle>
         <CardDescription>Your recent spending activities</CardDescription>
@@ -62,14 +63,22 @@ export default function TransactionList() {
       <CardContent>
         <div className="space-y-4">
           {transactions.length === 0 ? (
-            <p className="text-center text-muted-foreground py-4">
-              No transactions found
-            </p>
+            <div className="flex items-center animate-pulse justify-between p-3 border rounded-lg hover:scale-101 hover:bg-muted/100 transition-colors shadow-sm">
+              <svg
+                className="mr-3 size-10 animate-spin stroke-black"
+                viewBox="0 0 24 24"
+              >
+                <LoaderCircle />
+              </svg>
+              <p className="text-left animate-pulse text-muted-foreground py-4">
+                No transactions found
+              </p>
+            </div>
           ) : (
             transactions.map((transaction, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50 transition-colors"
+                className="flex items-center justify-between p-3 border rounded-lg hover:scale-101 hover:bg-muted/100 transition-colors shadow-sm"
               >
                 <div className="flex items-center gap-3">
                   <div
@@ -84,14 +93,26 @@ export default function TransactionList() {
                     />
                   </div>
                   <div>
-                    <p className="font-medium">{transaction.description}</p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="lg:w-90 w-30 font-medium truncate ">
+                      {transaction.description}
+                    </p>
+                    <p className="lg:w-90 w-30 lg:text-sm text-xs text-muted-foreground text-wrap">
                       {transaction.category} • {transaction.date}
                     </p>
                   </div>
                 </div>
-                <span className="font-semibold">
+                <span className="lg:w-50 text-sm lg:text-base text-right font-semibold lg:truncate">
                   ${transaction.amount.toFixed(2)}
+                </span>
+                <span>
+                  <Trash2
+                    className="hover:stroke-red-500 hover: cursor-pointer"
+                    width={15}
+                  />
+                  <SquarePen
+                    className="hover:stroke-red-500 hover: cursor-pointer"
+                    width={15}
+                  />
                 </span>
               </div>
             ))

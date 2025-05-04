@@ -2,6 +2,7 @@
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import type { ExpenseItem } from "~/services/expense";
+import { LoaderCircle } from "lucide-react";
 
 interface ExpenseDonutChartProps {
   data: ExpenseItem[];
@@ -13,7 +14,9 @@ export function ExpenseDonutChart({ data }: ExpenseDonutChartProps) {
   if (!data || data.length === 0) {
     return (
       <div className="h-[300px] w-full flex items-center justify-center">
-        No expense data available
+        <svg className="mr-3 size-10 animate-spin ..." viewBox="0 0 24 24">
+          <LoaderCircle />
+        </svg>
       </div>
     );
   }

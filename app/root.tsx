@@ -37,12 +37,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <div className="grid grid-cols-15">
+        <div className="fixed top-0 right-5 w-1/20 p-4 z-997 justify-center grid grid-cols-1">
           <button
             onClick={() =>
               setTheme((prev) => (prev === "light" ? "dark" : "light"))
             }
-            className={`z-999 col-start-15 relative mt-4.5 px-4 py-2.5 w-14 h-8 rounded-full focus:outline-none ${
+            className={`scale-80 lg:scale-100 col-start-15 relative  px-4 py-2.5 w-14 h-8 rounded-full focus:outline-none ${
               theme === "dark" ? "bg-gray-400" : "bg-gray-800"
             }`}
           >
@@ -85,7 +85,7 @@ export default function App() {
       <nav className="fixed z-50 top-0 left-0 right-0 shadow-md bg-accent font-semibold">
         <div className="p-4 flex-center justify-between">
           {loggedIn ? (
-            <div>
+            <div className="scale-80 lg:scale-100">
               <NavLink
                 to="/"
                 className={({ isActive }) =>
