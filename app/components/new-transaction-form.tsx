@@ -14,6 +14,15 @@ export function NewTransactionForm() {
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
 
+  function removeForm() {
+    const blurDiv = document.getElementById("blur-background");
+    const newForm = document.getElementById("new-form");
+    if (blurDiv && newForm) {
+      document.body.removeChild(blurDiv);
+      newForm.remove();
+    }
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const requestBody = {
@@ -54,7 +63,9 @@ export function NewTransactionForm() {
       >
         <button
           type="button"
-          onClick={() => window.location.reload()} // Replace with a proper close handler if needed
+          onClick={() => {
+            window.location.reload();
+          }} // Replace with a proper close handler if needed
           className="absolute top-4 right-5 text-gray-500 hover:text-red-700 dark:text-gray-400 dark:hover:text-gray-200 hover: cursor-pointer"
         >
           ✕

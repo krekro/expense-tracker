@@ -1,8 +1,9 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NewTransactionForm } from "./new-transaction-form";
+import { set } from "react-hook-form";
 
 export default function AddTransactionButton() {
   const [showform, setShowform] = useState(false);
@@ -24,19 +25,10 @@ export default function AddTransactionButton() {
     }
   }
 
-  function removeBlur() {
-    const blurDiv = document.getElementById("blur-background");
-    if (blurDiv) {
-      document.body.removeChild(blurDiv);
-    }
-  }
-
   const handleClick = () => {
     setShowform(!showform);
     if (!showform) {
       blurBackground();
-    } else {
-      removeBlur();
     }
   };
 

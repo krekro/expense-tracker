@@ -13,14 +13,36 @@ import { getColorByCategory } from "~/services/expense";
 import { getAPIurl } from "~/services/keys";
 import { getCookie } from "~/services/user";
 import { Trash2, SquarePen, LoaderCircle } from "lucide-react";
+import type { UUIDTypes } from "uuid";
 
 export default function TransactionList() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [isProcessing, setProcessing] = useState(false);
+  const [Target, setTarget] = useState(0);
 
-  useEffect(() => {
-    console.log("Fetching transaction data...");
+  function handleDelete(payment_id: UUIDTypes) {
+    const qeuryParams =
+      `user_name=${getCookie("username")}` +
+      `&session_id=${getCookie("session_id")}` +
+      `&payment_id=${payment_id}`;
+    fetch(`${getAPIurl("dev")}/api/delete-transaction?${qeuryParams}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      if (response.ok) {
+        window.location.reload();
+      } else {
+        alert("Internal server error, please try again.");
+        window.location.reload();
+      }
+    });
+  }
+
+  function fetchData(api: string) {
     fetch(
-      `${getAPIurl("prod")}/api/transactions?user_name=${getCookie(
+      `${api}/api/transactions?user_name=${getCookie(
         "username"
       )}&session_id=${getCookie("session_id")}`,
       {
@@ -52,6 +74,12 @@ export default function TransactionList() {
       .finally(() => {
         console.log("Transaction data fetch completed");
       });
+  }
+
+  useEffect(() => {
+    console.log("Fetching transaction data...");
+    const api = getAPIurl("prod");
+    fetchData(api);
   }, []);
 
   return (
@@ -105,12 +133,21 @@ export default function TransactionList() {
                   ${transaction.amount.toFixed(2)}
                 </span>
                 <span>
-                  <Trash2
-                    className="hover:stroke-red-500 hover: cursor-pointer"
-                    width={15}
-                  />
+                  {isProcessing && Target == index ? (
+                    <LoaderCircle className="size-4 animate-spin stroke-red-700" />
+                  ) : (
+                    <Trash2
+                      onClick={() => {
+                        setProcessing(true);
+                        setTarget(index);
+                        handleDelete(transaction.payment_id);
+                      }}
+                      className="hover:stroke-red-500 hover: cursor-pointer"
+                      width={15}
+                    />
+                  )}
                   <SquarePen
-                    className="hover:stroke-red-500 hover: cursor-pointer"
+                    className="hover:stroke-blue-600 hover: cursor-pointer"
                     width={15}
                   />
                 </span>

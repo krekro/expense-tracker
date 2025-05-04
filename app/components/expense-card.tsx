@@ -19,11 +19,12 @@ function ExpenseCard() {
   const [data, setData] = useState<ExpenseItem[]>([]);
   const [totalExpense, setTotalExpense] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const api = getAPIurl("prod");
 
-  function fetchData() {
+  function fetchData(api: string) {
     //console.log(`debug expensecard = ${getCookie(" session_id")}`);
     fetch(
-      `${getAPIurl("prod")}/api/expenses/?user_name=${getCookie(
+      `${api}/api/expenses/?user_name=${getCookie(
         "username"
       )}&session_id=${getCookie("session_id")}`,
       {
@@ -68,7 +69,7 @@ function ExpenseCard() {
     console.log("fetching data.....");
     setIsLoading(true);
     try {
-      fetchData();
+      fetchData(api);
     } catch (error) {
       console.error("Error fetching data:", error);
       alert("Invalid user session, please login again and retry");
@@ -115,7 +116,9 @@ function ExpenseCard() {
                 ))}
               </div>
               <button
-                onClick={fetchData}
+                onClick={() => {
+                  fetchData(api);
+                }}
                 style={{ cursor: "pointer" }}
                 className="mt-10 bg-black text-white px-4 py-2 rounded hover:bg-gray-100 hover:text-black"
               >

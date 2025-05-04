@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import type { Route } from "./+types/root";
 import "./app.css";
-import { getCookie, setCookie } from "./services/user";
+import { getCookie, setCookie, handleLogout } from "./services/user";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -66,11 +66,6 @@ export default function App() {
   const [theme, setTheme] = useState("light");
   const [loggedIn, setLogin] = useState(false);
   let isLogin = getCookie("isLogin");
-
-  function handleLogout() {
-    setCookie("", "false", "");
-    window.location.href = "/login";
-  }
 
   useEffect(() => {
     if (isLogin == "true") {

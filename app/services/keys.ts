@@ -8,14 +8,14 @@ export function getAPIkey() {
     return apiKey;
 }
 
-export function getAPIurl(env: string) {
-    if(env == "dev"){
-        const apiURL = "http://localhost:4000"
-        return apiURL;
+export function getAPIurl(env: string): string {
+    let apiURL: string;
+    if (env === "dev") {
+        apiURL = "http://localhost:4000";
+    } else if (env === "prod") {
+        apiURL = "https://fin-api-seven.vercel.app";
+    } else {
+        throw new Error("Invalid environment specified");
     }
-    else if(env == "prod"){
-        const apiUrl = "https://fin-api-seven.vercel.app";
-        return apiUrl;
-    }
-
+    return apiURL;
 }

@@ -5,6 +5,7 @@ export interface ExpenseItem {
 }
 
 export interface Transaction {
+  payment_id: string,
   date: string
   description: string
   amount: number
@@ -24,4 +25,3 @@ export function getColorByCategory(category: string): string {
   }
   return colors[category] || "#000000" // Default color if category not found
 }
-

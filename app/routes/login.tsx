@@ -14,6 +14,7 @@ import { getAPIurl } from "~/services/keys";
 import type { User } from "~/services/user";
 import Dashboard from "./dashboard";
 import { getCookie, setCookie } from "~/services/user";
+import { LogIn, ChartPie } from "lucide-react";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -57,25 +58,30 @@ export default function Login() {
     <>
       {isLogin == false ? (
         <div className="flex justify-center py-50">
-          <Card className="flex m-10 justify-center w-100 bg-gray-50 hover:bg-white transition-colors dark:bg-gray-800 dark:hover:bg-gray-700">
+          <Card className="flex m-10 justify-center w-100 bg-gray-50 hover:bg-muted/50 transition-colors dark:bg-gray-800 dark:hover:bg-gray-700">
             <CardHeader>
-              <CardTitle>Login</CardTitle>
+              <CardTitle>
+                <div className="inline-flex gap-3 justify-center">
+                  <span className=" font-extrabold">Expense Tracker</span>
+                  <ChartPie size={17} />
+                </div>
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <Input
                 type="text"
                 placeholder="Username"
-                className="mb-4 w-full"
+                className="mb-4 w-full bg-white"
                 onChange={(e) => setUsername(e.target.value)}
               />
               <Input
                 type="password"
                 placeholder="Password"
-                className="mb-4 w-full"
+                className="mb-4 w-full bg-white"
                 onChange={(e) => setPassword(e.target.value)}
               />
               <Button
-                className="w-full"
+                className="w-full hover:scale-101 hover:bg-gray-700 hover:cursor-pointer"
                 onClick={() => {
                   if (!username || !password) {
                     alert("Please enter both username and password");
@@ -85,6 +91,7 @@ export default function Login() {
                   console.log("Login button clicked");
                 }}
               >
+                <LogIn size={20} />
                 Login
               </Button>
             </CardContent>
