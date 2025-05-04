@@ -28,12 +28,14 @@ A modern web application to track your expenses, manage transactions, and visual
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/yourusername/expense-tracker.git
    cd expense-tracker
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    # or
@@ -41,10 +43,12 @@ A modern web application to track your expenses, manage transactions, and visual
    ```
 
 3. **Configure environment variables:**
+
    - Edit `/app/services/keys.ts` to set your API URLs.
    - Ensure your backend API is running and accessible.
 
 4. **Start the development server:**
+
    ```bash
    npm run dev
    # or
