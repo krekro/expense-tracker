@@ -25,19 +25,23 @@ export default function TransactionList() {
       `user_name=${getCookie("username")}` +
       `&session_id=${getCookie("session_id")}` +
       `&payment_id=${payment_id}`;
-    fetch(`${getAPIurl("prod")}/api/delete-transaction?${qeuryParams}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => {
-      if (response.ok) {
-        window.location.reload();
-      } else {
-        alert("Internal server error, please try again.");
-        window.location.reload();
-      }
-    });
+    try {
+      fetch(`${getAPIurl("prod")}/api/delete-transaction?${qeuryParams}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((response) => {
+        if (response.ok) {
+          window.location.reload();
+        } else {
+          alert("Internal server error, please try again.");
+          window.location.reload();
+        }
+      });
+    } catch (error) {
+      alert("Error, please retry delete operation again.");
+    }
   }
 
   function fetchData(api: string) {
@@ -84,7 +88,7 @@ export default function TransactionList() {
 
   return (
     <Card className="w-full h-full bg-white dark:bg-gray-900 hover:bg-muted/20 shadow-md">
-      <CardHeader>
+      <CardHeader className="pb-4">
         <CardTitle>Recent Transactions</CardTitle>
         <CardDescription>Your recent spending activities</CardDescription>
       </CardHeader>
@@ -120,16 +124,16 @@ export default function TransactionList() {
                       style={{ backgroundColor: transaction.categoryColor }}
                     />
                   </div>
-                  <div>
-                    <p className="lg:w-90 w-30 font-medium truncate ">
+                  <div className="lg:w-100 w-30">
+                    <p className="font-medium lg:text-base text-sm truncate ">
                       {transaction.description}
                     </p>
-                    <p className="lg:w-90 w-30 lg:text-sm text-xs text-muted-foreground text-wrap">
+                    <p className="lg:text-sm text-xs text-muted-foreground text-wrap">
                       {transaction.category} • {transaction.date}
                     </p>
                   </div>
                 </div>
-                <span className="lg:w-50 text-sm lg:text-base text-right font-semibold lg:truncate">
+                <span className="end-0 lg:w-30 text-sm lg:text-base text-right font-semibold lg:truncate">
                   ${transaction.amount.toFixed(2)}
                 </span>
                 <span>

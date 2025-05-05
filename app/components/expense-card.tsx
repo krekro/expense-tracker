@@ -13,6 +13,7 @@ import type { ExpenseItem } from "~/services/expense";
 import { getColorByCategory } from "~/services/expense";
 import { getAPIurl } from "~/services/keys";
 import { getCookie, handleLogout } from "~/services/user";
+import { MonthSelector } from "./ui/month-drop-down";
 
 function ExpenseCard() {
   // Use state to handle the data
@@ -81,7 +82,14 @@ function ExpenseCard() {
   return (
     <Card className="w-full bg-white dark:bg-gray-900 hover:bg-muted/20 shadow-md">
       <CardHeader>
-        <CardTitle>Monthly Expenses</CardTitle>
+        <CardTitle>
+          <div className="grid grid-cols-3 gap-3">
+            <span className="pt-1">Monthly Expenses</span>
+            <span className="col-span-1 col-start-3">
+              <MonthSelector />
+            </span>
+          </div>
+        </CardTitle>
         <CardDescription>
           Your spending for{" "}
           {new Date().toLocaleString("default", { month: "long" })}{" "}
@@ -117,7 +125,7 @@ function ExpenseCard() {
               </div>
               <button
                 onClick={() => {
-                  fetchData(api);
+                  window.location.reload();
                 }}
                 style={{ cursor: "pointer" }}
                 className="mt-10 bg-black text-white px-4 py-2 rounded hover:bg-gray-100 hover:text-black"

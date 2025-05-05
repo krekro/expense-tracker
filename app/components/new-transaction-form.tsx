@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "./ui/button";
 import {} from "lucide-react";
 import { Autocomplete } from "@mui/material";
@@ -56,10 +56,10 @@ export function NewTransactionForm() {
   };
 
   return (
-    <div>
+    <div className="">
       <form
         onSubmit={handleSubmit}
-        className="mt-6 justify-center lg:grid-cols-4 gap-6 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-10 rounded-lg shadow-lg z-50 relative resize-x"
+        className="justify-center lg:grid-cols-4 gap-6 bg-white dark:bg-gray-800 p-10 rounded-lg shadow-lg z-50 resize-x"
       >
         <button
           type="button"
