@@ -1,9 +1,24 @@
-.DS_Store
-/node_modules/
-
 # React Router
 /.react-router/
 /build/
 
-#env
+# Environment variables
 .env
+
+# Dependencies
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db 
