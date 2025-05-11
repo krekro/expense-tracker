@@ -36,9 +36,9 @@ function ExpenseCard() {
         response.json().then((body) => {
           const cdata: ExpenseItem[] = sortDataByAmount(body.data).map(
             (item: any) => ({
-              category: item.category,
-              amount: item.amount,
-              color: getColorByCategory(item.category),
+              category: item.Category,
+              amount: item.Amount,
+              color: getColorByCategory(item.Category),
             })
           );
           setData(cdata);

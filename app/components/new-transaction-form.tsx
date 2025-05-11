@@ -32,11 +32,12 @@ export function NewTransactionForm() {
       transaction_desc: transactionDesc,
       amount: parseFloat(amount),
       category: category,
-      create_date: new Date().toISOString(),
+      create_date: new Date().toISOString(), // Example: "2023-03-15T12:34:56.789Z"
     };
     console.log("Request Body:", requestBody);
     fetch(`${getAPIurl("prod")}/api/create-transaction`, {
       method: "POST",
+      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -49,7 +50,7 @@ export function NewTransactionForm() {
         setCategory("");
         window.location.reload();
       } else {
-        console.error("Error adding transaction:", response.statusText);
+        console.error("Error adding transaction:", response);
         alert("Cannot submit null value, please resubmit.");
       }
     });

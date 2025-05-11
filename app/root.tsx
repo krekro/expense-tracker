@@ -63,7 +63,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const [theme, setTheme] = useState("light");
   const [loggedIn, setLogin] = useState(false);
   let isLogin = getCookie("isLogin");
 
@@ -76,7 +75,7 @@ export default function App() {
   }, [isLogin]);
 
   return (
-    <div className={theme}>
+    <div>
       <nav className="fixed z-50 top-0 left-0 right-0 shadow-md bg-accent font-semibold">
         <div className="p-4 flex-center justify-between">
           {loggedIn ? (
@@ -116,7 +115,7 @@ export default function App() {
               <span className="mx-2 text-gray-500">|</span>
             </div>
           ) : (
-            <div>
+            <div className="scale-80 lg:scale-100 py-[6px] ">
               <NavLink
                 to="/"
                 className={({ isActive }) =>
