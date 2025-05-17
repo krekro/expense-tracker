@@ -37,7 +37,6 @@ export function NewTransactionForm() {
     console.log("Request Body:", requestBody);
     fetch(`${getAPIurl("prod")}/api/create-transaction`, {
       method: "POST",
-      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
